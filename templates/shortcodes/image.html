@@ -5,10 +5,7 @@
     {% img(src="PATH", width=XX) %}
       ALT TEXT
     {% end %}
-  
-
 #}
-
 
 <div class="content-img" style="width: {{ width | default(value=50) }}%">
   <img src="{{ src }}" title="{{ body | striptags }}">

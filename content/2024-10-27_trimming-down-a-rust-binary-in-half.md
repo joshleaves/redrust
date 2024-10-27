@@ -8,6 +8,10 @@ extra:
 generate_feeds: false
 ---
 
+{% alert(level="success", title="I posted this on reddit!") %}
+  The <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/">conversations that ensued</a> may interest you, but the best parts have been added to this post.
+{% end %}
+
 Lately, I've stumbled on a [blog post about Rust binary sizes](https://kobzol.github.io/rust/cargo/2024/01/23/making-rust-binaries-smaller-by-default.html). I haven't done much compilation[^compilation] since I last touched C in school, but I was intrigued by the subject and decided to look at how binary size reduction could impact my own Rust project: [advent-rs](https://github.com/joshleaves/advent-rs), a simple binary taking year/day/part/filename parameters and solving exercises from the [AdventOfCode](https://adventofcode.com/) online contest.
 
 ## Starting point
@@ -18,8 +22,9 @@ opt-level = 3
 ```
 Let's look at the resulting file through `size`[^size] and `ls`:
 ```bash
-$ size target/release/advent-rs                                                                                                                                                                                 __TEXT	__DATA	__OBJC	others	dec	hex
-1409024	16384	0	4295393280	4296818688	1001c4000
+$ size target/release/advent-rs
+__TEXT	__DATA	__OBJC	others	dec	hex
+1409024	16384	  0	      4295393280	4296818688	1001c4000
 
 $ ls -lah  target/release/advent-rs
  -rwxr-xr-x@ 1 red  staff   1.8M Oct 27 08:49 target/release/advent-rs
@@ -37,6 +42,10 @@ First things first, let's check compilation.
 
 ### Start with stripping
 As I remember from my C days, and as the blog clearly states: not stripping symbols from a release is the root of all evil.
+
+{% alert(level="warning", title="This is not an absolute!") %}
+  As <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu0rcsh/">fredbrancz</a> rightly said, if you release a binary to the public at large and later require debugging it, missing the symbols will come back at you fast!
+{% end %}
 
 ```rust
 [profile.release]
@@ -78,11 +87,18 @@ The [Cargo documentation](https://doc.rust-lang.org/cargo/reference/profiles.htm
 After `3`, there are `opt-level` values that target smaller binaries. I can try with `s`or `z` and they will respectively shave off 100 and 200kb, BUT the tradeoff here is execution speed, which is not a value I want to allow myself to play with[^speed].
 
 #### Don't check integer overflow
-You can disable checking for integer overflow with `overflow-checks = false` from your binary. Obviously, this is NOT recommended when you're playing with user input, and in my case, it won't even register any change.
+~~You can disable checking for integer overflow with `overflow-checks = false` from your binary. Obviously, this is NOT recommended when you're playing with user input, and in my case, it won't even register any change.~~
+
+{% alert(level="danger", title="Wrong!") %}
+  As <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu17nls/">GamerCounter</a> pointed out, these checks are removed by default in release mode.
+{% end %}
 
 #### Link-time optimization
 It seems that other than compiling, you can also optimise linking[^linking] with `lto = true`. I don't recommend it since it doubled my build time AND didn't give me a good size reduction...
 
+{% alert(level="warning", title="Attention!") %}
+  I wasn't clear enough on this, but as <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu1eg7j/">VorpalWay</a> and <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu1l7eg/">hubbamybubba</a> correctly pointed out, the benefits of this parameter depends on your project.
+{% end %}
 
 # Cleaning up crates
 The other thing that will take up space is...code. More specifically, code you wouldn't need. Let's check my dependencies:
@@ -149,13 +165,10 @@ $ cargo bloat --release
 66.9% 100.0% 992.5KiB              .text section size, the file size is 1.4MiB
 ```
 
-<div class="content-img" style="width: 50%">
-  <img src="/img/2024-10-27/fortune-teller.jpeg" alt="Never going to that fortune-teller ever again">
-  <p class="img-alt">
-    "Never going to that fortune-teller ever again"
-  </p>
-</div>
 
+{% image(src="/img/2024-10-27/fortune-teller.jpeg", width=50) %}
+  Never going to that fortune-teller ever again
+{% end %}
 
 Something must be wrong, let's try another command.
 
@@ -212,6 +225,10 @@ fn main() {
 ```
 And I'm not even using ALL the features!
 
+{% alert(level="info", title="By the way...") %}
+  I wasn't very clear on this, but as <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu1l7eg/">hubbamybubba</a> specified, you can select features from a crate import in your Cargo.toml.
+{% end %}
+
 # Picking a sane alternative to Clap
 Am I in the mood to look up for a new crate, and completely rewrite the input part of my code? Not really, but I've got a blog to write!
 
@@ -223,6 +240,11 @@ Obviously, I'm not in the mood to parse them by name.
 Looks very similar to Clap.
 * **[bpaf](https://github.com/pacak/bpaf)** 
 If I wanted a DSL, I'd be using Ruby.
+
+{% alert(level="warning", title="That's not a DSL!") %}
+  As <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu35rsm/">manpacket</a> corrected me, bpaf's API is not a <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL (Domain-Specific Language)</a>, but a <a href="https://en.wikipedia.org/wiki/Fluent_interface">Fluent Interface</a>.
+{% end %}
+
 * **[gumdrop](https://docs.rs/gumdrop/latest/gumdrop/)**
 That looks like A LOT of code.
 * **[lexop](https://github.com/blyxxyz/lexopt)**
@@ -234,6 +256,11 @@ Looks a bit too complicated.
 
 I can easily start with **Argh** then, it looks similar enough that I could maybe just drop it in and have it work.
 
+{% alert(level="warning", title="Attention!") %}
+  While many other libraries are just as small, I chose <strong>argh</strong> because it was simpler to adapt my code, but it comes with (depending on your setup) a huge caveat: <a href="https://www.reddit.com/r/rust/comments/1gdd0md/trimming_down_a_rust_binary_in_half/lu1cq23/">it's got issues with invalid UTF-8</a>.
+{% end %}
+
+
 # The beauty of Rust unit tests
 As a developper, I've written a lot of untested code.
 
@@ -241,12 +268,9 @@ With [advent-rb](https://github.com/joshleaves/advent-rb), I used unit tests for
 
 With [advent-rs](https://github.com/joshleaves/advent-rs), and Rust in general, I discovered a new paradigm. While all the languages I ever used made it "easy" to forget to add another file with the correct name, asked me to remember a complicated syntax, made me think of ways to cheat on my code to access private members from another file,... Rust just made away with that: testing a function is done from the same file where it's defined, and I don't even have to care about visibility.
 
-<div class="content-img" style="width: 75%;">
-  <img src="/img/2024-10-27/allthere-720x405.jpg" alt="It's all there!">
-  <p class="img-alt">
-    "It's all there!"
-  </p>
-</div>
+{% image(src="/img/2024-10-27/allthere-720x405.jpg", width=75) %}
+  It's all there!
+{% end %}
 
 The only thing not handled out-of-the-box is testing a binary (well, that's not really a unit test), but since everything else was so easy, it felt okay to take some time to write a test specifically for that in `tests/cli.rs`.
 
