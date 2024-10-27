@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+
+{% block title %}Have you met Red? - {{ super() }}{% endblock title %}
+
+{% block content %}
+  {{ section.content | safe }}
+{% endblock content %}

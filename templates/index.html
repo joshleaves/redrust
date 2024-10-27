@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <!-- viewport-fit=cover is to support iPhone X rounded corners and notch in landscape-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ get_url(path="print.css", trailing_slash=false) }}" media="print">
+  <link rel="stylesheet" href="{{ get_url(path="poole.css", trailing_slash=false) }}">
+  <link rel="stylesheet" href="{{ get_url(path="hyde.css", trailing_slash=false) }}">
+  <link rel="stylesheet" href="{{ get_url(path="redrust.css", trailing_slash=false) }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Red Leaves" href="/atom.xml">
+
+  {% block extra_head %}
+  {% endblock extra_head %}
+</head>
+<body class="{{ config.extra.hyde_theme }} {% if config.extra.hyde_reverse %}layout-reverse{% endif %}">
+  {% block sidebar %}
+    <div class="sidebar">
+      <div class="container {% if config.extra.hyde_sticky %}sidebar-sticky{% endif %}">
+        <div class="sidebar-about">
+          <a href="{{ config.base_url }}">
+            <h1>{{ config.title }}</h1>
+          </a>
+          {% block sidebar_about %}
+            {% if config.description %}
+              <p class="lead">{{config.description}}</p>
+            {% endif %}
+          {% endblock sidebar_about %}
+        </div>
+
+        <ul class="sidebar-nav">
+            {% block sidebar_nav %}
+              {% for link in config.extra.hyde_links %}
+                <li class="sidebar-nav-item"><a href="{{link.url}}">{{link.name}}</a></li>
+              {% endfor %}
+            {% endblock sidebar_nav %}
+        </ul>
+      </div>
+
+      <div class="container sidebar-sticky">
+        <div class="social-menu">
+          <ul>
+            <li class="github"><a href="https://github.com/joshleaves" target="blank"><i class="fab fa-github"></i></i></a></li>
+            <li class="twitter"><a href="https://x.com/red_rust" target="blank"><i class="fab fa-twitter"></i></a></li>
+            <li class="linkedin"><a href="https://www.linkedin.com/in/arnaudrouyer" target="blank"><i class="fab fa-linkedin-in"></i></a></li>
+            <li class="rss"><a href="/atom.xml" aria-label="rss"><i class="fa fa-rss"></i></a></li>
+          </ul>
+        </div>
+
+
+        <div class="sidebar-copyright">
+          © 2024 All rights reserved.
+          <br />
+          Built with
+          <a href="https://github.com/getzola/zola">Zola</a>
+          and
+          <a href="https://github.com/getzola/hyde">hyde</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endblock sidebar %}
+
+  <div class="content container">
+    {% block content %}
+      <div class="posts">
+        {% for page in section.pages | reverse %}
+          <div class="post">
+            <h1 class="post-title">
+              <a href="{{ page.permalink }}">
+                {{ page.title | safe }}
+              </a>
+            </h1>
+            <span class="post-date">{{ page.date | date(format="%Y-%m-%d") }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endblock content %}
+  </div>
+</body>
+
+</html>

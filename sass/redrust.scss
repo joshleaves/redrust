@@ -1,0 +1,108 @@
+.content-img {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  img {
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    border: solid 3px black;
+    border-bottom-width: 0px;
+    border-radius: 5px 5px 0px 0px;
+  }
+  p.img-alt {
+    width: 100%;
+    color: #ccc;
+    background-color: black;
+    border-radius: 0px 0px 5px 5px;
+    font-size: 0.75em;
+    text-align: center;
+    position: sticky;
+  }
+}
+
+
+.sidebar {
+  background: url("/img/Acer_japonicum_Red_leaves.JPG");
+  background-size: cover;
+
+  .sidebar-about {
+    a:hover {
+      text-decoration: none;
+    }
+    h1 {
+      font-size: 2.75rem;
+      text-shadow:1px 1px 25px #333, 1px 1px 25px #000;
+    }
+  }
+
+  .lead {
+    font-size: 0.75rem;
+    font-weight: 999;
+    color: #333;
+    text-shadow:1px 1px 10px #fff, 1px 1px 10px #ccc;
+  }
+
+  .sidebar-nav-item {
+    text-shadow:1px 1px 10px #333, 1px 1px 10px #000;
+  }
+
+  .sidebar-copyright {
+    font-size: 0.75rem;
+    font-weight: 999;
+    color: #000;
+    text-shadow:1px 1px 25px #fff, 1px 1px 25px #ccc;
+  }
+}
+
+.social-menu ul{
+  display: flex;
+  padding-inline-start: 0px;
+}
+
+.social-menu ul li{
+  list-style: none;
+  margin: 0 5px;
+}
+
+.social-menu ul li .fab,.fa{
+  font-size: 15px;
+  line-height: 30px;
+  transition: .3s;
+  color: #000;
+}
+
+.social-menu ul li .fab:hover{
+  color: #fff;
+}
+
+.social-menu ul li a{
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  text-align: center;
+  transition: .6s;
+  box-shadow: 0 5px 4px rgba(0,0,0,.5);
+}
+
+.social-menu ul li a:hover{
+  transform: translate(0, -10%);
+}
+
+.social-menu ul li.github a:hover{
+  background-color: rgba(0, 0, 0, 0.829);
+}
+.social-menu ul li.twitter a:hover{
+  background-color: #1da1f2;
+}
+.social-menu ul li.linkedin a:hover{
+  background-color: #0077b5;
+}
+
+.social-menu ul li.rss a:hover{
+  background-color: #ee802f;
+}
