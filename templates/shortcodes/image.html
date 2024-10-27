@@ -1,0 +1,18 @@
+{#
+  Image display
+
+  Usage: 
+    {% img(src="PATH", width=XX) %}
+      ALT TEXT
+    {% end %}
+  
+
+#}
+
+
+<div class="content-img" style="width: {{ width | default(value=50) }}%">
+  <img src="{{ src }}" title="{{ body | striptags }}">
+  <p class="img-alt">
+    {{ body | safe }}
+  </p>
+</div>

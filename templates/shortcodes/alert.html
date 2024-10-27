@@ -1,0 +1,36 @@
+{#
+  Alerts stolen from a CodePen: https://codepen.io/arlinacode/pen/pvXQwK
+
+  Usage: 
+    {% alert(level="LEVEL", title="TITLE") %}
+      BODY
+    {% end %}
+  
+  Allowed values for LEVEL:
+  - "success"
+    Green, check mark.
+  - "info"
+    Blue, circled "i" letter.
+  - "warning"
+    Orange, exclamation mark.
+  - "danger"
+    Red, circled cross mark.
+#}
+
+{% if level is matching("success") %}
+  {% set icon = "check" %}
+{% elif level is matching("info") %}
+  {% set icon = "info-circle" %}
+{% elif level is matching("warning") %}
+  {% set icon = "warning" %}
+{% elif level is matching("danger") %}
+  {% set icon = "times-circle" %}
+{% else %}
+  {% set icon = "info" %}
+{% endif %}
+
+<div class="alert alert-{{ level }} alert-white rounded">
+  <div class="icon"><i class="fa fa-{{ icon }}"></i></div>
+  <strong>{{ title | safe}}</strong> 
+  {{ body | safe }}
+</div>
