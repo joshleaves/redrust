@@ -1,0 +1,4 @@
+{
+  "origins": ["https://tech.dreamleaves.org"],
+  "originsRegex": ["http://localhost:[0-9]+"]
+}
