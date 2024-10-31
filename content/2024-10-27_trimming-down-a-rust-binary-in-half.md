@@ -5,7 +5,7 @@ extra:
   author: "Arnaud 'red' Rouyer"
 # taxonomies:
 #   languages: ["rust"]
-generate_feeds: false
+# generate_feeds: false
 ---
 
 {% alert(level="success", title="I posted this on reddit!") %}
