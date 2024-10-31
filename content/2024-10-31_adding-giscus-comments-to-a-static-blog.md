@@ -1,5 +1,5 @@
 ---
-title: "Adding Giscus comments to a static page blog"
+title: "Adding Giscus comments to a static blog"
 date: "2024-10-31"
 extra:
   author: "Arnaud 'red' Rouyer"
@@ -44,7 +44,7 @@ Giscus comment sections are tied to a repository, which left me puzzled, as I wa
 
 The answer is...it's up to you, but it must be public. So if your blog is in a private repository, you'll need a specific repo for the comments. I chose to have everything together to have the full "static-page-blog-on-github" experience, but it's nice to have a choice.
 
-- What are those pathname/url/<title> options?
+- What are those pathname/url/&lt;title&gt; options?
 
 Just pick one and forget about it. Having this option feels like too much hassle for what it is, and if you ever change an article's title/URL, you'll be screwed anyway. I'd have like an option to map the conversation to something like `<meta property="giscus:uuid" value={{ uuid }}>`, and maybe this will be available in the future, BUT this would break the nice display of the discussions on Github.
 
