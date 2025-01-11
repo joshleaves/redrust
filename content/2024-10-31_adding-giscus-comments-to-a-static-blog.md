@@ -71,7 +71,7 @@ Whenever a comment is posted:
 
 Happy commenting.
 
-* * *
+
 [^free]: "Free" as in both ["free of charge"](https://en.wiktionary.org/wiki/free_of_charge), and ["Free the French ISP"](https://en.wikipedia.org/wiki/Free_(ISP)).
 [^fewcomments]: But I'm keeping hope I will become famous in the future and get tons of comments!
 [^moot]: I remember being quite fond of [moot](https://news.ycombinator.com/item?id=6818416) back then, [just for its name](https://en.wikipedia.org/wiki/Christopher_Poole), but the product is dead as nails today.

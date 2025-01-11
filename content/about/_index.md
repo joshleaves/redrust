@@ -4,7 +4,7 @@ template: "about.html"
 generate_feeds: false
 ---
 
-<h1>Haaaave you met Red?</h1>
+<h1>Hâaaave you met Red?</h1>
 
 I've been writing for so long, that I actually forgot how to introduce myself. 
 

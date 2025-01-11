@@ -316,7 +316,6 @@ Once again, I am standing on the shoulders of giants, and while I am quite happy
 However, those solutions either require unstable features (we don't do `nightly` in this house), or stripping off Rust's standard library, which is a whole other can of worms...
 
 
-* * *
 [^compilation]: Blame NodeJS and Ruby!
 [^size]: As its [man page](https://linux.die.net/man/1/size) will tell you, `size` prints the "sections" in a binary, helping you visualise the separation between code and data for instance. It's not very needed here, but it's a useful command to know about.
 [^speed]: This project was also built to compete with [advent-rb](https://github.com/joshleaves/advent-rb), the same project written in Ruby, to marvel at the speed of execution I was missing from compiled languages.
