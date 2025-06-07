@@ -1,11 +1,13 @@
 ---
 title: "Trimming down a rust binary in half"
+description: "In which we learn to slim down Rust binaries."
 date: "2024-10-27"
 extra:
   author: "Arnaud 'red' Rouyer"
+  thumbnail: "img/2024-10-27/fortune-teller.jpeg"
+generate_feeds: true
 # taxonomies:
 #   languages: ["rust"]
-# generate_feeds: false
 ---
 
 {% alert(level="success", title="I posted this on reddit!") %}

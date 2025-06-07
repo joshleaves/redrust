@@ -1,3 +1,19 @@
+@media (min-width: 48em) {
+  .content {
+    max-width: 32rem;
+    margin-left: 14rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .content {
+    max-width: 44rem;
+    margin-left: 16rem;
+    margin-right: 4rem;
+  }
+}
+
 .content-img {
   text-align: center;
   margin-left: auto;
@@ -22,17 +38,23 @@
   }
 }
 
+@media (min-width: 48em) {
+  .sidebar {
+    width: 14rem;
+  }
+}
 
 .sidebar {
   background: url("/img/Acer_japonicum_Red_leaves.JPG");
   background-size: cover;
+  padding: 1rem 0.25rem;
 
   .sidebar-about {
     a:hover {
       text-decoration: none;
     }
     h1 {
-      font-size: 2.75rem;
+      font-size: 2rem;
       text-shadow:1px 1px 25px #333, 1px 1px 25px #000;
     }
   }
@@ -105,4 +127,24 @@
 
 .social-menu ul li.rss a:hover{
   background-color: #ee802f;
+}
+
+
+aside {
+  display: block;
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid #56c6ff;   /* Or any accent color you like */
+  background: #f7fbfd;              /* Light blue-ish background for contrast */
+  color: #222;                      /* Default text color */
+  border-radius: 6px;
+  box-shadow: 0 2px 8px 0 #0001;    /* Subtle shadow for elevation */
+  font-size: 1em;                   /* Adjust as you like */
+}
+
+aside strong {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: #2496c7;                   /* Title/accent color, optional */
 }

@@ -3,9 +3,11 @@ title: "Adding Giscus comments to a static blog"
 date: "2024-10-31"
 extra:
   author: "Arnaud 'red' Rouyer"
+  thumbnail: "/"
+description: "How easy it is to add Giscus to a blog?"
+generate_feeds: true
 # taxonomies:
 #   languages: ["javascript"]
-# generate_feeds: false
 ---
 
 For my [personal blog](https://blog.dreamleaves.org/), which I started a few months ago already, I don't really need comments. It's more of a "keep-a-useful-calendar-of-medias-I-consume" list, I write it in French, and it's not meant to open discussion, so I wasn't looking at comments. At all.

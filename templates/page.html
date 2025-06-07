@@ -1,7 +1,21 @@
 {% extends "index.html" %}
 
 {% block title %}{{ page.title }} - {{ super() }}{% endblock title %}
-{% block metaogtitle %}<meta property="og:title" content="{{ page.date | date(format="%Y-%m-%d") }}: {{ page.title }}">{% endblock metaogtitle %}
+{% block metaogtitle %}
+  <meta property="og:title" content="{{ page.date | date(format="%Y-%m-%d") }}: {{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:image" content="{{ config.base_url | safe }}/{{ page.extra.thumbnail | safe }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ current_url | safe }}">
+{% endblock metaogtitle %}
+{% block twittercard %}
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="{{ current_url | safe }}">
+  <meta name="twitter:title" content="{{ page.title }}">
+  <meta name="twitter:description" content="{{ page.description }}">
+  <meta name="twitter:image" content="{{ config.base_url | safe }}/{{ page.extra.thumbnail | safe}}">
+{% endblock twittercard%}
 
 {% block content %}
 <div class="post">

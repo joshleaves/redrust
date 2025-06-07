@@ -1,8 +1,11 @@
 ---
 title: "Rewriting a Web API in Rust"
-date: "2025-01-11"
+date: 9999-09-09
+# date: "2025-01-11"
 extra:
   author: "Arnaud 'red' Rouyer"
+description: "In which we learn to slim down Rust binaries."
+preview: "img/2024-10-27/fortune-teller.jpeg"
 # taxonomies:
 #   languages: ["rust"]
 # generate_feeds: false
