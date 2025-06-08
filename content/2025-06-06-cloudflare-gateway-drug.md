@@ -73,7 +73,7 @@ For another project, I had been looking at whether **Cloudflare** supported CRON
 
 The craziness of this pricing can't be overstated: for my brother's crypto fun, I had a CRON job running and sending him regular updates. I was even using a **D1 Database** to store the balances (which was also [free for that level of usage](https://developers.cloudflare.com/d1/platform/pricing/)), and best of all, I didn't have to worry about any kind of intrusion, which I would have with a regular server.
 
-I don't know how much my brother made, as I don't really care about trading, but two months later, he bought himself a MacBook Air, then offered to buy me a PS5 Pro when I mentioned I was waiting for [Death Stranding 2](https://www.youtube.com/watch?v=wbLstJHlC4U) coming out in June.
+I don't know how much my brother made, as I don't really care about trading, but a few months later, he bought himself a MacBook Air, and later offered to buy me a PS5 Pro when I mentioned I was waiting for [Death Stranding 2](https://www.youtube.com/watch?v=wbLstJHlC4U) coming out in June.
 
 Which is very nice from him, since, so far in this story, I still hadn't paid a cent to **Cloudflare**.
 
